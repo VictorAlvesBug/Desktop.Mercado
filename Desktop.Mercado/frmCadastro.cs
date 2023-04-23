@@ -8,23 +8,21 @@ namespace Desktop.Mercado
 {
 	public partial class frmCadastro : DevExpress.XtraEditors.XtraForm
 	{
-		private frmLogin formLogin;
+		private readonly frmLogin _formLogin;
 		private readonly UsuarioBusiness _usuarioBusiness;
 
-		public frmCadastro(frmLogin _formLogin)
+		public frmCadastro(frmLogin formLogin)
 		{
 			InitializeComponent();
 
-			formLogin = _formLogin;
+			_formLogin = formLogin;
 			_usuarioBusiness = new UsuarioBusiness();
 		}
 
 		private void btnCriarConta_Click(object sender, EventArgs e)
 		{
-			btnCriarConta.Enabled = false;
-			string textoAnterior = btnCriarConta.Text;
-			btnCriarConta.Text = "CRIANDO CONTA...";
-			btnCriarConta.Update();
+			var loadingCriarConta = new Loading(btnCriarConta);
+			loadingCriarConta.Habilitar("CRIANDO CONTA...");
 
 			string nome = txtNome.Text;
 			string email = txtEmail.Text.ToLower();
@@ -34,13 +32,12 @@ namespace Desktop.Mercado
 			if (RealizarCadastro(nome, email, senha, confirmacaoSenha, out string mensagem))
 			{
 				MessageBox.Show($"Cadastro realizado com sucesso", "Sucesso", MessageBoxButtons.OK);
+				loadingCriarConta.Desabilitar();
 				AbrirFormLogin();
 				return;
 			}
 
-			btnCriarConta.Enabled = true;
-			btnCriarConta.Text = textoAnterior;
-			btnCriarConta.Update();
+			loadingCriarConta.Desabilitar();
 			MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK);
 		}
 
@@ -48,39 +45,48 @@ namespace Desktop.Mercado
 		{
 			mensagem = string.Empty;
 
-			if (!ValidadorUsuario.NomeEhValido(nome, out string mensagemNome))
-				mensagem += mensagemNome;
-
-			if (!ValidadorUsuario.EmailEhValido(email, out string mensagemEmail))
-				mensagem += mensagemEmail;
-
-			if (!ValidadorUsuario.SenhaEhValida(senha, out string mensagemSenha))
-				mensagem += mensagemSenha;
-
-			if (senha != confirmacaoSenha)
-				mensagem += "As senhas devem ser iguais.\n";
-
-			if (mensagem.Length > 0)
-				return false;
-
-			if (_usuarioBusiness.VerificarEmailJaCadastrado(email))
+			try
 			{
-				mensagem = "Este e-mail já está cadastrado, entre com sua conta.";
-				AbrirFormLogin();
+				if (!ValidadorUsuario.NomeEhValido(nome, out string mensagemNome))
+					mensagem += mensagemNome;
+
+				if (!ValidadorUsuario.EmailEhValido(email, out string mensagemEmail))
+					mensagem += mensagemEmail;
+
+				if (!ValidadorUsuario.SenhaEhValida(senha, out string mensagemSenha))
+					mensagem += mensagemSenha;
+
+				if (senha != confirmacaoSenha)
+					mensagem += "As senhas devem ser iguais.\n";
+
+				if (mensagem.Length > 0)
+					return false;
+
+				if (_usuarioBusiness.VerificarEmailJaCadastrado(email))
+				{
+					mensagem = "Este e-mail já está cadastrado, entre com sua conta.";
+					AbrirFormLogin();
+					return false;
+				}
+
+				var usuario = new Usuario
+				{
+					Nome = nome,
+					Email = email,
+					HashSenha = Criptografia.RetornarHash(senha)
+				};
+
+				if (_usuarioBusiness.Cadastrar(usuario))
+					return true;
+
+				mensagem += "Erro ao cadastrar usuário\n";
 				return false;
 			}
-
-			var usuario = new Usuario {
-				Nome = nome,
-				Email = email,
-				HashSenha = Criptografia.RetornarHash(senha)
-			};
-
-			if(_usuarioBusiness.Cadastrar(usuario))
-				return true;
-
-			mensagem += "Erro ao cadastrar usuário\n";
-			return false;
+			catch (Exception ex)
+			{
+				mensagem += ex.Message;
+				return false;
+			}
 		}
 
 		private void linkEntrar_Click(object sender, EventArgs e)
@@ -90,15 +96,15 @@ namespace Desktop.Mercado
 
 		private void AbrirFormLogin()
 		{
-			formLogin.txtEmail.Text = txtEmail.Text;
-			formLogin.txtSenha.Text = txtSenha.Text;
-			formLogin.Show();
+			_formLogin.txtEmail.Text = txtEmail.Text;
+			_formLogin.txtSenha.Text = txtSenha.Text;
+			_formLogin.Show();
 			this.Hide();
 		}
 
 		private void frmCadastro_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			formLogin.Close();
+			_formLogin.Close();
 		}
 	}
 }

@@ -17,10 +17,8 @@ namespace Desktop.Mercado
 
 		private void btnEntrar_Click(object sender, EventArgs e)
 		{
-			btnEntrar.Enabled = false;
-			string textoAnterior = btnEntrar.Text;
-			btnEntrar.Text = "ENTRANDO...";
-			btnEntrar.Update();
+			var loadingEntrar = new Loading(btnEntrar);
+			loadingEntrar.Habilitar("ENTRANDO...");
 
 			string email = txtEmail.Text;
 			string senha = txtSenha.Text;
@@ -30,12 +28,11 @@ namespace Desktop.Mercado
 				var formHome = new frmHome(this);
 				formHome.Show();
 				this.Hide();
+				loadingEntrar.Desabilitar();
 				return;
 			}
 
-			btnEntrar.Enabled = true;
-			btnEntrar.Text = textoAnterior;
-			btnEntrar.Update();
+			loadingEntrar.Desabilitar();
 			MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK);
 		}
 
@@ -43,27 +40,34 @@ namespace Desktop.Mercado
 		{
 			mensagem = string.Empty;
 
-			if (!ValidadorUsuario.EmailEhValido(email, out string mensagemEmail))
-				mensagem += mensagemEmail;
-
-			if (!ValidadorUsuario.SenhaEhValida(senha, out string mensagemSenha))
-				mensagem += mensagemSenha;
-
-			if(mensagem.Length > 0)
-				return false;
-
-			var usuario = _usuarioBusiness.Logar(email, senha);
-
-			if (usuario == null)
+			try
 			{
-				mensagem = "E-mail ou senha inválidos.";
+				if (!ValidadorUsuario.EmailEhValido(email, out string mensagemEmail))
+					mensagem += mensagemEmail;
+
+				if (!ValidadorUsuario.SenhaEhValida(senha, out string mensagemSenha))
+					mensagem += mensagemSenha;
+
+				if (mensagem.Length > 0)
+					return false;
+
+				var usuario = _usuarioBusiness.Logar(email, senha);
+
+				if (usuario == null)
+				{
+					mensagem = "E-mail ou senha inválidos.";
+					return false;
+				}
+
+				Properties.Settings.Default.usuarioLogado = usuario;
+				mensagem = "Usuário encontrado.";
+				return true;
+			}
+			catch (Exception ex)
+			{
+				mensagem += ex.Message;
 				return false;
 			}
-
-			Properties.Settings.Default.usuarioLogado = usuario;
-
-			mensagem = "Usuário encontrado.";
-			return true;
 		}
 
 		private void linkCriarConta_Click(object sender, EventArgs e)

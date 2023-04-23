@@ -149,6 +149,9 @@
 			this.Controls.Add(this.lblEmail);
 			this.Controls.Add(this.txtSenha);
 			this.Controls.Add(this.txtEmail);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(300, 300);
+			this.MinimumSize = new System.Drawing.Size(300, 300);
 			this.Name = "frmCadastro";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Mercado - Cadastro";

@@ -1,10 +1,6 @@
 ﻿using Desktop.Mercado.DataAccess;
 using Desktop.Mercado.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Desktop.Mercado.Business
 {

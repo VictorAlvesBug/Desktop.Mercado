@@ -39,6 +39,7 @@
 			this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
 			this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
 			this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
+			this.btnSair = new DevExpress.XtraBars.BarButtonItem();
 			this.fluentDesignFormContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
@@ -128,16 +129,30 @@
 			// fluentDesignFormControl1
 			// 
 			this.fluentDesignFormControl1.FluentDesignForm = this;
+			this.fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnSair});
 			this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
 			this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
 			this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
 			this.fluentDesignFormControl1.Size = new System.Drawing.Size(1109, 31);
 			this.fluentDesignFormControl1.TabIndex = 2;
 			this.fluentDesignFormControl1.TabStop = false;
+			this.fluentDesignFormControl1.TitleItemLinks.Add(this.btnSair);
 			// 
 			// fluentFormDefaultManager1
 			// 
 			this.fluentFormDefaultManager1.Form = this;
+			this.fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnSair});
+			this.fluentFormDefaultManager1.MaxItemId = 1;
+			// 
+			// btnSair
+			// 
+			this.btnSair.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+			this.btnSair.Caption = "Sair";
+			this.btnSair.Id = 0;
+			this.btnSair.Name = "btnSair";
+			this.btnSair.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSair_ItemClick);
 			// 
 			// frmHome
 			// 
@@ -174,5 +189,6 @@
 		private DevExpress.XtraEditors.SimpleButton btnExcluir;
 		private DevExpress.XtraEditors.SimpleButton btnEditar;
 		private DevExpress.XtraEditors.SimpleButton btnCadastrar;
+		private DevExpress.XtraBars.BarButtonItem btnSair;
 	}
 }

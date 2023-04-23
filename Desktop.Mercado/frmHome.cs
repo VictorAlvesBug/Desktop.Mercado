@@ -7,14 +7,14 @@ namespace Desktop.Mercado
 {
 	public partial class frmHome : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
 	{
-		private readonly frmLogin formLogin;
+		private readonly frmLogin _formLogin;
 		private readonly ProdutoBusiness _produtoBusiness;
 
-		public frmHome(frmLogin _formLogin)
+		public frmHome(frmLogin formLogin)
 		{
 			InitializeComponent();
 
-			formLogin = _formLogin;
+			_formLogin = formLogin;
 			_produtoBusiness = new ProdutoBusiness();
 
 			PopularProdutos();
@@ -22,7 +22,7 @@ namespace Desktop.Mercado
 
 		private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			formLogin.Close();
+			_formLogin.Close();
 		}
 
 		private void btnCadastrar_Click(object sender, System.EventArgs e)
@@ -42,6 +42,16 @@ namespace Desktop.Mercado
 			var listaProdutos = _produtoBusiness.Listar();
 			var bindingListProdutos = new BindingList<Produto>(listaProdutos);
 			dgvProduto.DataSource = bindingListProdutos;
+		}
+
+		private void btnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+		{
+			Properties.Settings.Default.usuarioLogado = null;
+
+			_formLogin.txtEmail.Text = string.Empty;
+			_formLogin.txtSenha.Text = string.Empty;
+			_formLogin.Show();
+			this.Hide();
 		}
 	}
 }

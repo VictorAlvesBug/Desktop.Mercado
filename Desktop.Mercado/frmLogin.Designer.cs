@@ -119,6 +119,9 @@
 			this.Controls.Add(this.lblEmail);
 			this.Controls.Add(this.txtSenha);
 			this.Controls.Add(this.txtEmail);
+			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(300, 225);
+			this.MinimumSize = new System.Drawing.Size(300, 225);
 			this.Name = "frmLogin";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Mercado - Login";

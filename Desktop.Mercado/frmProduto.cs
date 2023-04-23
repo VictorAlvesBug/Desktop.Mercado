@@ -1,16 +1,9 @@
 ﻿using Desktop.Mercado.Business;
 using Desktop.Mercado.Models;
 using Desktop.Mercado.Utils;
-using DevExpress.XtraEditors;
-using DevExpress.XtraPrinting.Design.RemoteDocumentSourceDesign;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Desktop.Mercado
@@ -40,7 +33,10 @@ namespace Desktop.Mercado
 		{
 			string nome = txtNome.Text;
 			ValidadorProduto.AjustarPreco(txtPreco.Text, out decimal preco);
-			string foto = imgFoto.Text;
+			
+			ptbFoto.Image.Save(@"C:\Fotos\teste", System.Drawing.Imaging.ImageFormat.Jpeg);
+
+			string foto = ptbFoto.Text;
 			Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
 			if(Salvar(nome, preco, foto, categoria, out string mensagem))
@@ -98,9 +94,29 @@ namespace Desktop.Mercado
 			}
 		}
 
+		private void txtPreco_Click(object sender, EventArgs e)
+		{
+			txtPreco.Select(txtPreco.Text.Length, 0);
+		}
+
 		private void txtPreco_KeyUp(object sender, KeyEventArgs e)
 		{
 			txtPreco.Text = ValidadorProduto.AjustarPreco(txtPreco.Text, out decimal _);
+		}
+
+		private void txtPreco_KeyDown(object sender, KeyEventArgs e)
+		{
+			txtPreco.Select(txtPreco.Text.Length, 0);
+		}
+
+		private void btnUploadFoto_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+			if (openFileDialog.ShowDialog() == DialogResult.OK)
+			{
+				ptbFoto.Image = new Bitmap(openFileDialog.FileName);
+			}
 		}
 	}
 }

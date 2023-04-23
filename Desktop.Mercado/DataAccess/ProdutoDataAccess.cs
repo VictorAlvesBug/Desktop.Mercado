@@ -1,11 +1,8 @@
 ﻿using Dapper;
 using Desktop.Mercado.ConnectionFactories;
 using Desktop.Mercado.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Desktop.Mercado.DataAccess
 {
