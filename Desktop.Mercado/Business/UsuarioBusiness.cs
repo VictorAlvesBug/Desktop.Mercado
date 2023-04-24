@@ -27,7 +27,7 @@ namespace Desktop.Mercado.Business
 
 		public Usuario Logar(string email, string senha)
 		{
-			string hashSenha = Criptografia.RetornarHash(senha);
+			string hashSenha = UtilsCriptografia.RetornarHash(senha);
 
 			return _usuarioDataAccess.Logar(email, hashSenha);
 		}
@@ -35,6 +35,11 @@ namespace Desktop.Mercado.Business
 		public bool VerificarEmailJaCadastrado(string email)
 		{
 			return _usuarioDataAccess.Listar().Any(usuario => usuario.Email == email);
+		}
+
+		public Usuario Retornar(int codigo)
+		{
+			return _usuarioDataAccess.Retornar(codigo);
 		}
 	}
 }

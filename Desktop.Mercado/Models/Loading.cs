@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 
-namespace Desktop.Mercado.Utils
+namespace Desktop.Mercado.Models
 {
 	public class Loading
 	{

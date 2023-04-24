@@ -33,38 +33,113 @@ namespace Desktop.Mercado.DataAccess
 			{
 				string query = @"
 							SELECT
-								*
+								Usuario.Codigo,
+								Usuario.Nome,
+								Usuario.Email,
+								Usuario.HashSenha,
+								Usuario.CodigoTipoUsuario,
+								Usuario.DataHoraCadastro,
+								Usuario.Ativo,
+								TipoUsuario.Codigo,
+								TipoUsuario.Nome,
+								TipoUsuario.DataHoraCadastro,
+								TipoUsuario.Ativo
 							FROM
 								Usuario
+								INNER JOIN TipoUsuario
+									ON Usuario.CodigoTipoUsuario = TipoUsuario.Codigo
 							WHERE
-								Ativo = 1
+								Usuario.Ativo = 1
+								AND TipoUsuario.Ativo = 1
 						";
 
-				return connection.Query<Usuario>(query).ToList();
+				return connection.Query<Usuario, TipoUsuario, Usuario>(query,
+					(usuario, tipoUsuario) =>
+					{
+						usuario.TipoUsuario = tipoUsuario;
+						return usuario;
+					}, splitOn: "Codigo").ToList();
+			}
+		}
+
+		public Usuario Retornar(int codigo)
+		{
+			using (var connection = ConnectionFactory.AbrirConexao("Mercado"))
+			{
+				string query = @"
+							SELECT
+								Usuario.Codigo,
+								Usuario.Nome,
+								Usuario.Email,
+								Usuario.HashSenha,
+								Usuario.CodigoTipoUsuario,
+								Usuario.DataHoraCadastro,
+								Usuario.Ativo,
+								TipoUsuario.Codigo,
+								TipoUsuario.Nome,
+								TipoUsuario.DataHoraCadastro,
+								TipoUsuario.Ativo
+							FROM
+								Usuario
+								INNER JOIN TipoUsuario
+									ON Usuario.CodigoTipoUsuario = TipoUsuario.Codigo
+							WHERE
+								Usuario.Codigo = @codigo
+						";
+
+				return connection.Query<Usuario, TipoUsuario, Usuario>(query,
+					(usuario, tipoUsuario) =>
+					{
+						usuario.TipoUsuario = tipoUsuario;
+						return usuario;
+					}, new
+					{
+						codigo
+					}, splitOn: "Codigo")
+					.FirstOrDefault();
 			}
 		}
 
 		public Usuario Logar(string email, string hashSenha)
 		{
-			using(var connection = ConnectionFactory.AbrirConexao("Mercado"))
+			using (var connection = ConnectionFactory.AbrirConexao("Mercado"))
 			{
 				string query = @"
 							SELECT
-								*
+								Usuario.Codigo,
+								Usuario.Nome,
+								Usuario.Email,
+								Usuario.HashSenha,
+								Usuario.CodigoTipoUsuario,
+								Usuario.DataHoraCadastro,
+								Usuario.Ativo,
+								TipoUsuario.Codigo,
+								TipoUsuario.Nome,
+								TipoUsuario.DataHoraCadastro,
+								TipoUsuario.Ativo
 							FROM
 								Usuario
+								INNER JOIN TipoUsuario
+									ON Usuario.CodigoTipoUsuario = TipoUsuario.Codigo
 							WHERE
-								Ativo = 1
-								AND Email = @email
-								AND HashSenha =@hashSenha
+								Usuario.Ativo = 1
+								AND Usuario.Email = @email
+								AND Usuario.HashSenha =@hashSenha
 						";
 
 
-				return connection.QueryFirstOrDefault<Usuario>(query, new
-				{
-					email,
-					hashSenha
-				});
+				return connection.Query<Usuario, TipoUsuario, Usuario>(query,
+					(usuario, tipoUsuario) =>
+					{
+						usuario.TipoUsuario = tipoUsuario;
+						return usuario;
+					},
+					new
+					{
+						email,
+						hashSenha
+					}, splitOn: "Codigo")
+					.FirstOrDefault();
 			}
 		}
 	}

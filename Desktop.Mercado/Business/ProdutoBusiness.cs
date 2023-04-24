@@ -11,31 +11,15 @@ namespace Desktop.Mercado.Business
 	public class ProdutoBusiness
 	{
 		private readonly ProdutoDataAccess _produtoDataAccess;
-		private readonly CategoriaDataAccess _categoriaDataAccess;
 
 		public ProdutoBusiness()
 		{
 			_produtoDataAccess = new ProdutoDataAccess();
-			_categoriaDataAccess = new CategoriaDataAccess();
 		}
 
 		public List<Produto> Listar()
 		{
-			try
-			{
-				return _produtoDataAccess.Listar()
-					.Select(produto =>
-					{
-						produto.Categoria = _categoriaDataAccess.Retornar(produto.CodigoCategoria);
-						return produto;
-					})
-					.ToList();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Erro");
-				return new List<Produto>();
-			}
+			return _produtoDataAccess.Listar();
 		}
 
 		public bool Salvar(Produto produto)
@@ -48,17 +32,7 @@ namespace Desktop.Mercado.Business
 
 		public Produto Retornar(int codigo)
 		{
-			try
-			{
-				var produto = _produtoDataAccess.Retornar(codigo);
-				produto.Categoria = _categoriaDataAccess.Retornar(produto.CodigoCategoria);
-				return produto;
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Erro");
-				return null;
-			}
+			return _produtoDataAccess.Retornar(codigo);
 		}
 
 		public bool Desativar(int codigo)

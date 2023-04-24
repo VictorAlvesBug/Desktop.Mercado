@@ -56,7 +56,7 @@ namespace Desktop.Mercado
 
 			formProduto.codigoProduto = codigoProduto;
 			formProduto.txtNome.Text = produto.Nome;
-			formProduto.txtPreco.Text = ValidadorProduto.RetornarPrecoFormatado(produto.Preco);
+			formProduto.txtPreco.Text = UtilsProduto.RetornarPrecoFormatado(produto.Preco);
 			formProduto.ptbFoto.Image = produto.ArquivoFoto;
 			formProduto.cmbCategoria.SelectedIndex = formProduto.cmbCategoria.FindStringExact(produto.Categoria.Nome);
 
@@ -119,7 +119,7 @@ namespace Desktop.Mercado
 				linha.Cells[0].Value = produto.Codigo;
 				linha.Cells[1].Value = produto.ArquivoFoto;
 				linha.Cells[2].Value = produto.Nome;
-				linha.Cells[3].Value = ValidadorProduto.RetornarPrecoFormatado(produto.Preco);
+				linha.Cells[3].Value = UtilsProduto.RetornarPrecoFormatado(produto.Preco);
 				linha.Cells[4].Value = produto.Categoria.Nome;
 				linha.Cells[5].Value = produto.DataHoraCadastro.ToString("dd/MM/yyyy - HH:mm");
 				linha.Height = 50;

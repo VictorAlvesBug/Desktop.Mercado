@@ -72,7 +72,7 @@ namespace Desktop.Mercado
 		{
 			string nome = txtNome.Text;
 
-			if(!ValidadorCategoria.NomeEhValido(nome, out string mensagem))
+			if(!UtilsCategoria.NomeEhValido(nome, out string mensagem))
 			{
 				MessageBox.Show(mensagem, "Erro");
 				return;

@@ -1,6 +1,6 @@
 ﻿namespace Desktop.Mercado.Utils
 {
-	public static class Criptografia
+	public static class UtilsCriptografia
 	{
 		public static string RetornarHash(string texto)
 		{

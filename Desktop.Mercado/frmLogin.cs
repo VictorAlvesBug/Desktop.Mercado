@@ -1,4 +1,5 @@
 ﻿using Desktop.Mercado.Business;
+using Desktop.Mercado.Models;
 using Desktop.Mercado.Utils;
 using System;
 using System.Windows.Forms;
@@ -42,10 +43,10 @@ namespace Desktop.Mercado
 
 			try
 			{
-				if (!ValidadorUsuario.EmailEhValido(email, out string mensagemEmail))
+				if (!UtilsUsuario.EmailEhValido(email, out string mensagemEmail))
 					mensagem += mensagemEmail;
 
-				if (!ValidadorUsuario.SenhaEhValida(senha, out string mensagemSenha))
+				if (!UtilsUsuario.SenhaEhValida(senha, out string mensagemSenha))
 					mensagem += mensagemSenha;
 
 				if (mensagem.Length > 0)

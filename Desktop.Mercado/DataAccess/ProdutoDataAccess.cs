@@ -17,11 +17,20 @@ namespace Desktop.Mercado.DataAccess
 								*
 							FROM
 								Produto
+								INNER JOIN Categoria
+									ON Produto.CodigoCategoria = Categoria.Codigo
 							WHERE
-								Ativo = 1
+								Produto.Ativo = 1
 						";
 
-				return connection.Query<Produto>(query).ToList();
+				return connection.Query<Produto, Categoria, Produto>(query,
+					(produto, categoria) =>
+					{
+						produto.Categoria = categoria;
+						return produto;
+					},
+					splitOn: "Codigo")
+					.ToList();
 			}
 		}
 
@@ -72,14 +81,34 @@ namespace Desktop.Mercado.DataAccess
 			{
 				string query = @"
 							SELECT
-								*
+								Produto.Codigo,
+								Produto.Nome,
+								Produto.Preco,
+								Produto.NomeFoto,
+								Produto.CodigoCategoria,
+								Produto.DataHoraCadastro,
+								Produto.Ativo,
+								Categoria.Codigo,
+								Categoria.Nome,
+								Categoria.DataHoraCadastro,
+								Categoria.Ativo
 							FROM
 								Produto
+								INNER JOIN Categoria
+									ON Produto.CodigoCategoria = Categoria.Codigo
 							WHERE
-								Codigo = @codigo
+								Produto.Codigo = @codigo
 						";
 
-				return connection.QueryFirstOrDefault<Produto>(query, new { codigo });
+				return connection.Query<Produto, Categoria, Produto>(query,
+					(produto, categoria) =>
+					{
+						produto.Categoria = categoria;
+						return produto;
+					},
+					new { codigo },
+					splitOn: "Codigo")
+					.FirstOrDefault();
 			}
 		}
 

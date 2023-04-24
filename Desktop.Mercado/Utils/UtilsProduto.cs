@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Desktop.Mercado.Utils
 {
-	public static class ValidadorProduto
+	public static class UtilsProduto
 	{
 		public static bool NomeEhValido(string nome, out string mensagem)
 		{

@@ -33,14 +33,14 @@ namespace Desktop.Mercado
 		private void btnSalvar_Click(object sender, EventArgs e)
 		{
 			string nome = txtNome.Text;
-			decimal preco = ValidadorProduto.RetornarPrecoDecimal(txtPreco.Text);
+			decimal preco = UtilsProduto.RetornarPrecoDecimal(txtPreco.Text);
 			Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
 			string nomeFoto = string.Empty;
 
 			if (ptbFoto.Image != null)
 			{
-				nomeFoto = ValidadorProduto.SalvarFoto(ptbFoto.Image);
+				nomeFoto = UtilsProduto.SalvarFoto(ptbFoto.Image);
 			}
 
 			if(Salvar(nome, preco, nomeFoto, categoria, out string mensagem))
@@ -63,10 +63,10 @@ namespace Desktop.Mercado
 
 			try
 			{
-				if (!ValidadorProduto.NomeEhValido(nome, out string mensagemNome))
+				if (!UtilsProduto.NomeEhValido(nome, out string mensagemNome))
 					mensagem += mensagemNome;
 
-				if (!ValidadorProduto.PrecoEhValido(preco, out string mensagemPreco))
+				if (!UtilsProduto.PrecoEhValido(preco, out string mensagemPreco))
 					mensagem += mensagemPreco;
 
 				if (string.IsNullOrEmpty(nomeFoto))
@@ -108,7 +108,7 @@ namespace Desktop.Mercado
 
 		private void txtPreco_KeyUp(object sender, KeyEventArgs e)
 		{
-			txtPreco.Text = ValidadorProduto.AjustarPreco(txtPreco.Text);
+			txtPreco.Text = UtilsProduto.AjustarPreco(txtPreco.Text);
 		}
 
 		private void txtPreco_KeyDown(object sender, KeyEventArgs e)

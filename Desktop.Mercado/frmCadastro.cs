@@ -47,13 +47,13 @@ namespace Desktop.Mercado
 
 			try
 			{
-				if (!ValidadorUsuario.NomeEhValido(nome, out string mensagemNome))
+				if (!UtilsUsuario.NomeEhValido(nome, out string mensagemNome))
 					mensagem += mensagemNome;
 
-				if (!ValidadorUsuario.EmailEhValido(email, out string mensagemEmail))
+				if (!UtilsUsuario.EmailEhValido(email, out string mensagemEmail))
 					mensagem += mensagemEmail;
 
-				if (!ValidadorUsuario.SenhaEhValida(senha, out string mensagemSenha))
+				if (!UtilsUsuario.SenhaEhValida(senha, out string mensagemSenha))
 					mensagem += mensagemSenha;
 
 				if (senha != confirmacaoSenha)
@@ -73,7 +73,7 @@ namespace Desktop.Mercado
 				{
 					Nome = nome,
 					Email = email,
-					HashSenha = Criptografia.RetornarHash(senha)
+					HashSenha = UtilsCriptografia.RetornarHash(senha)
 				};
 
 				if (_usuarioBusiness.Cadastrar(usuario))

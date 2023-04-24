@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Desktop.Mercado.Utils
 {
-	public static class ValidadorUsuario
+	public static class UtilsUsuario
 	{
 		public static bool NomeEhValido(string nome, out string mensagem)
 		{

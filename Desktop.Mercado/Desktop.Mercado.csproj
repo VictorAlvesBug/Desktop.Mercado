@@ -191,11 +191,12 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\Criptografia.cs" />
-    <Compile Include="Utils\Loading.cs" />
-    <Compile Include="Utils\ValidadorCategoria.cs" />
-    <Compile Include="Utils\ValidadorProduto.cs" />
-    <Compile Include="Utils\ValidadorUsuario.cs" />
+    <Compile Include="Utils\UtilsCriptografia.cs" />
+    <Compile Include="Models\Loading.cs" />
+    <Compile Include="Utils\UtilsCategoria.cs" />
+    <Compile Include="Utils\UtilsPermissao.cs" />
+    <Compile Include="Utils\UtilsProduto.cs" />
+    <Compile Include="Utils\UtilsUsuario.cs" />
     <EmbeddedResource Include="frmCategoria.resx">
       <DependentUpon>frmCategoria.cs</DependentUpon>
     </EmbeddedResource>
