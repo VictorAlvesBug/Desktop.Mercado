@@ -3,6 +3,7 @@ using Desktop.Mercado.Models;
 using Desktop.Mercado.Utils;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
@@ -33,13 +34,16 @@ namespace Desktop.Mercado
 		{
 			string nome = txtNome.Text;
 			ValidadorProduto.AjustarPreco(txtPreco.Text, out decimal preco);
-			
-			ptbFoto.Image.Save(@"C:\Fotos\teste", System.Drawing.Imaging.ImageFormat.Jpeg);
-
-			string foto = ptbFoto.Text;
 			Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
-			if(Salvar(nome, preco, foto, categoria, out string mensagem))
+			string nomeFoto = string.Empty;
+
+			if (ptbFoto.Image != null)
+			{
+				nomeFoto = ValidadorProduto.SalvarFoto(ptbFoto.Image);
+			}
+
+			if(Salvar(nome, preco, nomeFoto, categoria, out string mensagem))
 			{
 				MessageBox.Show("Produto salvo com sucesso", "Sucesso", MessageBoxButtons.OK);
 
@@ -53,7 +57,7 @@ namespace Desktop.Mercado
 			return;
 		}
 
-		private bool Salvar(string nome, decimal preco, string foto, Categoria categoria, out string mensagem)
+		private bool Salvar(string nome, decimal preco, string nomeFoto, Categoria categoria, out string mensagem)
 		{
 			mensagem = string.Empty;
 
@@ -64,6 +68,9 @@ namespace Desktop.Mercado
 
 				if (!ValidadorProduto.PrecoEhValido(preco, out string mensagemPreco))
 					mensagem += mensagemPreco;
+
+				if (string.IsNullOrEmpty(nomeFoto))
+					mensagem += "Selecione uma foto válida\n";
 
 				if (categoria == null)
 					mensagem += "Selecione uma categoria válida\n";
@@ -78,7 +85,7 @@ namespace Desktop.Mercado
 					Preco = preco,
 					Categoria = categoria,
 					CodigoCategoria = categoria.Codigo,
-					Foto = foto
+					NomeFoto = nomeFoto
 				};
 
 				if (_produtoBusiness.Salvar(produto))
@@ -112,7 +119,7 @@ namespace Desktop.Mercado
 		private void btnUploadFoto_Click(object sender, EventArgs e)
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter = "Image Files (*.jpg;*.jpeg;.*.gif;)|*.jpg;*.jpeg;.*.gif";
+			openFileDialog.Filter = "Image Files (*.jpg;*.jpeg)|*.jpg;*.jpeg";
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				ptbFoto.Image = new Bitmap(openFileDialog.FileName);

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Desktop.Mercado.Utils
 {
@@ -44,6 +48,23 @@ namespace Desktop.Mercado.Utils
 
 			precoDecimal = precoDecimal / 100;
 			return precoDecimal.ToString("c2");
+		}
+
+		public static string SalvarFoto(Image arquivoFoto)
+		{
+			string nomeFoto = $"{Guid.NewGuid()}.jpg";
+			string caminhoFoto = $"{Application.StartupPath}\\Fotos\\{nomeFoto}";
+
+			using (MemoryStream memory = new MemoryStream())
+			{
+				using (FileStream fs = new FileStream(caminhoFoto, FileMode.Create, FileAccess.ReadWrite))
+				{
+					arquivoFoto.Save(memory, ImageFormat.Jpeg);
+					byte[] bytes = memory.ToArray();
+					fs.Write(bytes, 0, bytes.Length);
+				}
+			}
+			return nomeFoto;
 		}
 
 		private static bool VerificarQuantidadeCaracteres(string texto, int min, int max)

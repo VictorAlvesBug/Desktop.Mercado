@@ -33,12 +33,12 @@ namespace Desktop.Mercado.DataAccess
 							INSERT INTO Produto
 								(Nome, 
 								Preco, 
-								Foto, 
+								NomeFoto, 
 								CodigoCategoria)
 							VALUES
 								(@Nome, 
 								@Preco, 
-								@Foto, 
+								@NomeFoto, 
 								@CodigoCategoria)
 						";
 
@@ -56,7 +56,7 @@ namespace Desktop.Mercado.DataAccess
 							SET
 								Nome = @Nome, 
 								Preco = @Preco, 
-								Foto = @Foto, 
+								NomeFoto = @NomeFoto, 
 								CodigoCategoria = @CodigoCategoria
 							WHERE
 								Codigo = @Codigo

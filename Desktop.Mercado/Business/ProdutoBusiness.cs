@@ -1,5 +1,6 @@
 ﻿using Desktop.Mercado.DataAccess;
 using Desktop.Mercado.Models;
+using Desktop.Mercado.Utils;
 using System.Collections.Generic;
 
 namespace Desktop.Mercado.Business
