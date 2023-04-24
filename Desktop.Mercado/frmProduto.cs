@@ -33,7 +33,7 @@ namespace Desktop.Mercado
 		private void btnSalvar_Click(object sender, EventArgs e)
 		{
 			string nome = txtNome.Text;
-			ValidadorProduto.AjustarPreco(txtPreco.Text, out decimal preco);
+			decimal preco = ValidadorProduto.RetornarPrecoDecimal(txtPreco.Text);
 			Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
 			string nomeFoto = string.Empty;
@@ -108,7 +108,7 @@ namespace Desktop.Mercado
 
 		private void txtPreco_KeyUp(object sender, KeyEventArgs e)
 		{
-			txtPreco.Text = ValidadorProduto.AjustarPreco(txtPreco.Text, out decimal _);
+			txtPreco.Text = ValidadorProduto.AjustarPreco(txtPreco.Text);
 		}
 
 		private void txtPreco_KeyDown(object sender, KeyEventArgs e)

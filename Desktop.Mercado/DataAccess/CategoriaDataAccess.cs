@@ -90,5 +90,23 @@ namespace Desktop.Mercado.DataAccess
 				return connection.Execute(query, new { codigo }) > 0;
 			}
 		}
+
+		public bool CategoriaTemProdutos(int codigoCategoria)
+		{
+			using (var connection = ConnectionFactory.AbrirConexao("Mercado"))
+			{
+				string query = @"
+							SELECT
+								COUNT(*)
+							FROM
+								Produto
+							WHERE
+								Ativo = 1
+								AND CodigoCategoria = @codigoCategoria
+						";
+
+				return connection.QueryFirstOrDefault<int>(query, new { codigoCategoria }) > 0;
+			}
+		}
 	}
 }

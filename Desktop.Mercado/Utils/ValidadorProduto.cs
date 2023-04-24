@@ -39,14 +39,25 @@ namespace Desktop.Mercado.Utils
 			return true;
 		}
 
-		public static string AjustarPreco(string preco, out decimal precoDecimal)
+		public static string AjustarPreco(string precoFormatado)
 		{
-			string digitos = string.Concat(preco.Where(Char.IsDigit));
+			decimal precoDecimal = RetornarPrecoDecimal(precoFormatado);
+			return RetornarPrecoFormatado(precoDecimal);
+		}
 
-			if (!Decimal.TryParse(digitos, out precoDecimal))
+		public static decimal RetornarPrecoDecimal(string precoFormatado)
+		{
+			string digitos = string.Concat(precoFormatado.Where(Char.IsDigit));
+
+			if (!Decimal.TryParse(digitos, out decimal precoDecimal))
 				precoDecimal = 0;
 
-			precoDecimal = precoDecimal / 100;
+			precoDecimal /= 100;
+			return precoDecimal;
+		}
+
+		public static string RetornarPrecoFormatado(decimal precoDecimal)
+		{
 			return precoDecimal.ToString("c2");
 		}
 

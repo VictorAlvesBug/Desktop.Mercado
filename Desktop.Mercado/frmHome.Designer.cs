@@ -38,8 +38,14 @@
 			this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
 			this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
 			this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
-			this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
 			this.btnSair = new DevExpress.XtraBars.BarButtonItem();
+			this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
+			this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Foto = new System.Windows.Forms.DataGridViewImageColumn();
+			this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.DataHoraCadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.fluentDesignFormContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
@@ -67,6 +73,7 @@
 			this.btnCategorias.Size = new System.Drawing.Size(95, 32);
 			this.btnCategorias.TabIndex = 4;
 			this.btnCategorias.Text = "CATEGORIAS";
+			this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
 			// 
 			// btnExcluir
 			// 
@@ -75,6 +82,7 @@
 			this.btnExcluir.Size = new System.Drawing.Size(95, 32);
 			this.btnExcluir.TabIndex = 3;
 			this.btnExcluir.Text = "EXCLUIR";
+			this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
 			// 
 			// btnEditar
 			// 
@@ -83,6 +91,7 @@
 			this.btnEditar.Size = new System.Drawing.Size(95, 32);
 			this.btnEditar.TabIndex = 2;
 			this.btnEditar.Text = "EDITAR";
+			this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
 			// 
 			// btnCadastrar
 			// 
@@ -98,8 +107,17 @@
 			this.dgvProduto.AllowUserToAddRows = false;
 			this.dgvProduto.AllowUserToDeleteRows = false;
 			this.dgvProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvProduto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Foto,
+            this.Nome,
+            this.Preco,
+            this.Categoria,
+            this.DataHoraCadastro});
 			this.dgvProduto.Location = new System.Drawing.Point(6, 6);
 			this.dgvProduto.Name = "dgvProduto";
+			this.dgvProduto.ReadOnly = true;
+			this.dgvProduto.RowTemplate.Height = 84;
 			this.dgvProduto.Size = new System.Drawing.Size(1043, 536);
 			this.dgvProduto.TabIndex = 0;
 			// 
@@ -139,13 +157,6 @@
 			this.fluentDesignFormControl1.TabStop = false;
 			this.fluentDesignFormControl1.TitleItemLinks.Add(this.btnSair);
 			// 
-			// fluentFormDefaultManager1
-			// 
-			this.fluentFormDefaultManager1.Form = this;
-			this.fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btnSair});
-			this.fluentFormDefaultManager1.MaxItemId = 1;
-			// 
 			// btnSair
 			// 
 			this.btnSair.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
@@ -153,6 +164,61 @@
 			this.btnSair.Id = 0;
 			this.btnSair.Name = "btnSair";
 			this.btnSair.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSair_ItemClick);
+			// 
+			// fluentFormDefaultManager1
+			// 
+			this.fluentFormDefaultManager1.Form = this;
+			this.fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnSair});
+			this.fluentFormDefaultManager1.MaxItemId = 1;
+			// 
+			// Codigo
+			// 
+			this.Codigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Codigo.HeaderText = "Codigo";
+			this.Codigo.Name = "Codigo";
+			this.Codigo.ReadOnly = true;
+			this.Codigo.Visible = false;
+			this.Codigo.Width = 65;
+			// 
+			// Foto
+			// 
+			this.Foto.HeaderText = "Foto";
+			this.Foto.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+			this.Foto.Name = "Foto";
+			this.Foto.ReadOnly = true;
+			// 
+			// Nome
+			// 
+			this.Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Nome.HeaderText = "Nome";
+			this.Nome.Name = "Nome";
+			this.Nome.ReadOnly = true;
+			this.Nome.Width = 59;
+			// 
+			// Preco
+			// 
+			this.Preco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Preco.HeaderText = "Preço";
+			this.Preco.Name = "Preco";
+			this.Preco.ReadOnly = true;
+			this.Preco.Width = 59;
+			// 
+			// Categoria
+			// 
+			this.Categoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.Categoria.HeaderText = "Categoria";
+			this.Categoria.Name = "Categoria";
+			this.Categoria.ReadOnly = true;
+			this.Categoria.Width = 79;
+			// 
+			// DataHoraCadastro
+			// 
+			this.DataHoraCadastro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+			this.DataHoraCadastro.HeaderText = "Data/Hora Cadastro";
+			this.DataHoraCadastro.Name = "DataHoraCadastro";
+			this.DataHoraCadastro.ReadOnly = true;
+			this.DataHoraCadastro.Width = 118;
 			// 
 			// frmHome
 			// 
@@ -190,5 +256,11 @@
 		private DevExpress.XtraEditors.SimpleButton btnEditar;
 		private DevExpress.XtraEditors.SimpleButton btnCadastrar;
 		private DevExpress.XtraBars.BarButtonItem btnSair;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+		private System.Windows.Forms.DataGridViewImageColumn Foto;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
+		private System.Windows.Forms.DataGridViewTextBoxColumn DataHoraCadastro;
 	}
 }

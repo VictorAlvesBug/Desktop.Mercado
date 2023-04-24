@@ -16,7 +16,6 @@ namespace Desktop.Mercado.Models
 			{
 				try
 				{
-
 					string caminhoFoto = $"{Application.StartupPath}\\Fotos\\{NomeFoto}";
 					return new Bitmap(caminhoFoto);
 				}

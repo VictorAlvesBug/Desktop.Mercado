@@ -169,8 +169,8 @@
 		private DevExpress.XtraEditors.LabelControl lblFoto;
 		private DevExpress.XtraEditors.LabelControl lblCategoria;
 		private DevExpress.XtraEditors.SimpleButton btnSalvar;
-		private System.Windows.Forms.ComboBox cmbCategoria;
 		private DevExpress.XtraEditors.SimpleButton btnUploadFoto;
-		private System.Windows.Forms.PictureBox ptbFoto;
+		public System.Windows.Forms.ComboBox cmbCategoria;
+		public System.Windows.Forms.PictureBox ptbFoto;
 	}
 }

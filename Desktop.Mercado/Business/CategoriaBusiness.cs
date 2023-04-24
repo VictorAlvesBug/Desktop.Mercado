@@ -8,8 +8,8 @@ namespace Desktop.Mercado.Business
 	{
 		private readonly CategoriaDataAccess _categoriaDataAccess;
 
-        public CategoriaBusiness()
-        {
+		public CategoriaBusiness()
+		{
 			_categoriaDataAccess = new CategoriaDataAccess();
 		}
 
@@ -18,14 +18,12 @@ namespace Desktop.Mercado.Business
 			return _categoriaDataAccess.Listar();
 		}
 
-		public bool Cadastrar(Categoria categoria)
+		public bool Salvar(Categoria categoria)
 		{
-			return _categoriaDataAccess.Cadastrar(categoria);
-		}
-
-		public bool Editar(Categoria categoria)
-		{
-			return _categoriaDataAccess.Editar(categoria);
+			if (categoria.Codigo == 0)
+				return _categoriaDataAccess.Cadastrar(categoria);
+			else
+				return _categoriaDataAccess.Editar(categoria);
 		}
 
 		public Categoria Retornar(int codigo)
@@ -36,6 +34,11 @@ namespace Desktop.Mercado.Business
 		public bool Desativar(int codigo)
 		{
 			return _categoriaDataAccess.Desativar(codigo);
+		}
+
+		public bool CategoriaTemProdutos(int codigo)
+		{
+			return _categoriaDataAccess.CategoriaTemProdutos(codigo);
 		}
 	}
 }
