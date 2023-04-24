@@ -11,7 +11,7 @@ namespace Desktop.Mercado
 		private readonly frmLogin _formLogin;
 		private readonly UsuarioBusiness _usuarioBusiness;
 
-		public frmCadastro(frmLogin formLogin)
+		public frmCadastro(frmLogin formLogin = null)
 		{
 			InitializeComponent();
 
@@ -96,9 +96,12 @@ namespace Desktop.Mercado
 
 		private void AbrirFormLogin()
 		{
-			_formLogin.txtEmail.Text = txtEmail.Text;
-			_formLogin.txtSenha.Text = txtSenha.Text;
-			_formLogin.Show();
+			if (_formLogin != null)
+			{
+				_formLogin.txtEmail.Text = txtEmail.Text;
+				_formLogin.txtSenha.Text = txtSenha.Text;
+				_formLogin.Show();
+			}
 			this.Hide();
 		}
 

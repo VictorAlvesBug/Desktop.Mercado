@@ -26,6 +26,7 @@ namespace Desktop.Mercado
 			InitializeComponent();
 			_categoriaBusiness = new CategoriaBusiness();
 			PopularCategorias();
+			ExibirFuncionalidadesConformePermissoes();
 		}
 
 		private void lstCategoria_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,6 +67,26 @@ namespace Desktop.Mercado
 			_categoria = new Categoria();
 			txtNome.Text = string.Empty;
 			btnExcluir.Enabled = false;
+		}
+
+		private void ExibirFuncionalidadesConformePermissoes()
+		{
+			if (Properties.Settings.Default.usuarioLogado != null
+				&& Properties.Settings.Default.usuarioLogado.EhAdministrador())
+			{
+				lblNome.Visible = true;
+				txtNome.Visible = true;
+				btnExcluir.Visible = true;
+				btnSalvar.Visible = true;
+				this.Height = 344;
+				return;
+			}
+
+			lblNome.Visible = false;
+			txtNome.Visible = false;
+			btnExcluir.Visible = false;
+			btnSalvar.Visible = false;
+			this.Height = 265;
 		}
 
 		private void btnSalvar_Click(object sender, EventArgs e)

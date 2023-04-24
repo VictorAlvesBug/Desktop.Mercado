@@ -166,17 +166,16 @@
 		}
 
 		#endregion
-
-		private DevExpress.XtraEditors.LabelControl lblLogin;
-		private DevExpress.XtraEditors.HyperlinkLabelControl linkEntrar;
-		private DevExpress.XtraEditors.SimpleButton btnCriarConta;
 		private DevExpress.XtraEditors.LabelControl lblSenha;
 		private DevExpress.XtraEditors.LabelControl lblEmail;
 		private DevExpress.XtraEditors.LabelControl lblNome;
-		private DevExpress.XtraEditors.TextEdit txtNome;
 		public DevExpress.XtraEditors.TextEdit txtSenha;
 		public DevExpress.XtraEditors.TextEdit txtEmail;
 		private DevExpress.XtraEditors.LabelControl lblConfirmacaoSenha;
 		public DevExpress.XtraEditors.TextEdit txtConfirmacaoSenha;
+		public DevExpress.XtraEditors.TextEdit txtNome;
+		public DevExpress.XtraEditors.LabelControl lblLogin;
+		public DevExpress.XtraEditors.HyperlinkLabelControl linkEntrar;
+		public DevExpress.XtraEditors.SimpleButton btnCriarConta;
 	}
 }

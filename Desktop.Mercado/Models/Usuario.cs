@@ -12,5 +12,10 @@ namespace Desktop.Mercado.Models
 		public TipoUsuario TipoUsuario { get; set; }
 		public DateTime DataHoraCadastro { get; set; }
 		public bool Ativo { get; set; }
+
+		public bool EhAdministrador()
+		{
+			return TipoUsuario?.Nome == "Administrador";
+		}
 	}
 }

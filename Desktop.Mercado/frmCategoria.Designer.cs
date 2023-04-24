@@ -91,7 +91,7 @@
 			this.Controls.Add(this.lstCategoria);
 			this.Name = "frmCategoria";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Categorias";
+			this.Text = "Mercado - Categorias";
 			((System.ComponentModel.ISupportInitialize)(this.txtNome.Properties)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();

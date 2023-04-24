@@ -23,6 +23,7 @@ namespace Desktop.Mercado
 			_categoriaBusiness = new CategoriaBusiness();
 
 			PopularProdutos();
+			ExibirFuncionalidadesConformePermissoes();
 		}
 
 		private void frmHome_FormClosed(object sender, FormClosedEventArgs e)
@@ -122,7 +123,7 @@ namespace Desktop.Mercado
 				linha.Cells[3].Value = UtilsProduto.RetornarPrecoFormatado(produto.Preco);
 				linha.Cells[4].Value = produto.Categoria.Nome;
 				linha.Cells[5].Value = produto.DataHoraCadastro.ToString("dd/MM/yyyy - HH:mm");
-				linha.Height = 50;
+				linha.Height = 80;
 
 				dgvProduto.Rows.Add(linha);
 			});
@@ -142,9 +143,20 @@ namespace Desktop.Mercado
 			btnExcluir.Enabled = false;
 		}
 
-		private void btnCategorias_Click(object sender, EventArgs e)
+		private void ExibirFuncionalidadesConformePermissoes()
 		{
-			new frmCategoria().ShowDialog();
+			if (Properties.Settings.Default.usuarioLogado != null 
+				&& Properties.Settings.Default.usuarioLogado.EhAdministrador())
+			{
+				btnCadastrar.Visible = true;
+				btnEditar.Visible = true;
+				btnExcluir.Visible = true;
+				return;
+			}
+
+			btnCadastrar.Visible = false;
+			btnEditar.Visible = false;
+			btnExcluir.Visible = false;
 		}
 
 		private void btnSair_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -154,6 +166,44 @@ namespace Desktop.Mercado
 			_formLogin.txtEmail.Text = string.Empty;
 			_formLogin.txtSenha.Text = string.Empty;
 			_formLogin.Show();
+			this.Hide();
+		}
+
+		private void formContainer_Click(object sender, EventArgs e)
+		{
+			accControl.CollapseAll();
+		}
+
+		private void btnAtualizar_Click(object sender, EventArgs e)
+		{
+			PopularProdutos();
+		}
+
+		private void accCategorias_Click(object sender, EventArgs e)
+		{
+			new frmCategoria().ShowDialog();
+
+			PopularProdutos();
+		}
+
+		private void accMinhaConta_Click(object sender, EventArgs e)
+		{
+			if(Properties.Settings.Default.usuarioLogado == null)
+			{
+				MessageBox.Show("Usuário não está logado", "Erro");
+				return;
+			}
+
+			var usuario = Properties.Settings.Default.usuarioLogado;
+
+			var formCadastro = new frmCadastro();
+			formCadastro.Text = "Mercado - Alterar Conta";
+			formCadastro.txtNome.Text = usuario.Nome;
+			formCadastro.txtEmail.Text = usuario.Email;
+			formCadastro.txtSenha.Text = string.Empty;
+			formCadastro.txtConfirmacaoSenha.Text = string.Empty;
+			formCadastro.btnCriarConta.Text = "SALVAR";
+			formCadastro.Show();
 			this.Hide();
 		}
 	}

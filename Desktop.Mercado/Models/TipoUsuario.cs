@@ -8,5 +8,10 @@ namespace Desktop.Mercado.Models
 		public string Nome { get; set; }
 		public DateTime DataHoraCadastro { get; set; }
 		public bool Ativo { get; set; }
+
+		public override string ToString()
+		{
+			return Nome;
+		}
 	}
 }

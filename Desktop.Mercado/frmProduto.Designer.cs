@@ -101,7 +101,7 @@
 			this.btnSalvar.Name = "btnSalvar";
 			this.btnSalvar.Size = new System.Drawing.Size(274, 33);
 			this.btnSalvar.TabIndex = 16;
-			this.btnSalvar.Text = "Salvar";
+			this.btnSalvar.Text = "SALVAR";
 			this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
 			// 
 			// cmbCategoria
