@@ -30,6 +30,7 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			this.formContainer = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
+			this.lblTitulo = new DevExpress.XtraEditors.LabelControl();
 			this.btnAtualizar = new DevExpress.XtraEditors.SimpleButton();
 			this.btnExcluir = new DevExpress.XtraEditors.SimpleButton();
 			this.btnEditar = new DevExpress.XtraEditors.SimpleButton();
@@ -47,7 +48,6 @@
 			this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
 			this.btnSair = new DevExpress.XtraBars.BarButtonItem();
 			this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
-			this.lblTitulo = new DevExpress.XtraEditors.LabelControl();
 			this.formContainer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.accControl)).BeginInit();
@@ -64,16 +64,27 @@
 			this.formContainer.Controls.Add(this.btnCadastrar);
 			this.formContainer.Controls.Add(this.dgvProduto);
 			this.formContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.formContainer.Location = new System.Drawing.Point(164, 31);
+			this.formContainer.Location = new System.Drawing.Point(48, 31);
 			this.formContainer.Name = "formContainer";
-			this.formContainer.Size = new System.Drawing.Size(739, 586);
+			this.formContainer.Size = new System.Drawing.Size(855, 586);
 			this.formContainer.TabIndex = 0;
 			this.formContainer.Click += new System.EventHandler(this.formContainer_Click);
+			// 
+			// lblTitulo
+			// 
+			this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblTitulo.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitulo.Appearance.Options.UseFont = true;
+			this.lblTitulo.Location = new System.Drawing.Point(6, 6);
+			this.lblTitulo.Name = "lblTitulo";
+			this.lblTitulo.Size = new System.Drawing.Size(93, 29);
+			this.lblTitulo.TabIndex = 19;
+			this.lblTitulo.Text = "Produtos";
 			// 
 			// btnAtualizar
 			// 
 			this.btnAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAtualizar.Location = new System.Drawing.Point(-110, 542);
+			this.btnAtualizar.Location = new System.Drawing.Point(6, 542);
 			this.btnAtualizar.Name = "btnAtualizar";
 			this.btnAtualizar.Size = new System.Drawing.Size(95, 32);
 			this.btnAtualizar.TabIndex = 4;
@@ -83,7 +94,7 @@
 			// btnExcluir
 			// 
 			this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnExcluir.Location = new System.Drawing.Point(632, 542);
+			this.btnExcluir.Location = new System.Drawing.Point(748, 542);
 			this.btnExcluir.Name = "btnExcluir";
 			this.btnExcluir.Size = new System.Drawing.Size(95, 32);
 			this.btnExcluir.TabIndex = 3;
@@ -93,7 +104,7 @@
 			// btnEditar
 			// 
 			this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnEditar.Location = new System.Drawing.Point(531, 542);
+			this.btnEditar.Location = new System.Drawing.Point(647, 542);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(95, 32);
 			this.btnEditar.TabIndex = 2;
@@ -103,7 +114,7 @@
 			// btnCadastrar
 			// 
 			this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCadastrar.Location = new System.Drawing.Point(430, 542);
+			this.btnCadastrar.Location = new System.Drawing.Point(546, 542);
 			this.btnCadastrar.Name = "btnCadastrar";
 			this.btnCadastrar.Size = new System.Drawing.Size(95, 32);
 			this.btnCadastrar.TabIndex = 1;
@@ -124,7 +135,7 @@
             this.Preco,
             this.Categoria,
             this.DataHoraCadastro});
-			this.dgvProduto.Location = new System.Drawing.Point(-110, 41);
+			this.dgvProduto.Location = new System.Drawing.Point(6, 41);
 			this.dgvProduto.Name = "dgvProduto";
 			this.dgvProduto.ReadOnly = true;
 			this.dgvProduto.RowTemplate.Height = 84;
@@ -182,8 +193,9 @@
             this.accMinhaConta});
 			this.accControl.Location = new System.Drawing.Point(0, 31);
 			this.accControl.Name = "accControl";
+			this.accControl.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
 			this.accControl.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-			this.accControl.Size = new System.Drawing.Size(164, 586);
+			this.accControl.Size = new System.Drawing.Size(48, 586);
 			this.accControl.TabIndex = 1;
 			this.accControl.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
 			// 
@@ -228,17 +240,6 @@
 			this.fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btnSair});
 			this.fluentFormDefaultManager1.MaxItemId = 1;
-			// 
-			// lblTitulo
-			// 
-			this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblTitulo.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblTitulo.Appearance.Options.UseFont = true;
-			this.lblTitulo.Location = new System.Drawing.Point(-110, 6);
-			this.lblTitulo.Name = "lblTitulo";
-			this.lblTitulo.Size = new System.Drawing.Size(93, 29);
-			this.lblTitulo.TabIndex = 19;
-			this.lblTitulo.Text = "Produtos";
 			// 
 			// frmHome
 			// 
