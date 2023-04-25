@@ -47,6 +47,7 @@
 			this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
 			this.btnSair = new DevExpress.XtraBars.BarButtonItem();
 			this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
+			this.lblTitulo = new DevExpress.XtraEditors.LabelControl();
 			this.formContainer.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.accControl)).BeginInit();
@@ -56,22 +57,23 @@
 			// 
 			// formContainer
 			// 
+			this.formContainer.Controls.Add(this.lblTitulo);
 			this.formContainer.Controls.Add(this.btnAtualizar);
 			this.formContainer.Controls.Add(this.btnExcluir);
 			this.formContainer.Controls.Add(this.btnEditar);
 			this.formContainer.Controls.Add(this.btnCadastrar);
 			this.formContainer.Controls.Add(this.dgvProduto);
 			this.formContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.formContainer.Location = new System.Drawing.Point(184, 31);
+			this.formContainer.Location = new System.Drawing.Point(164, 31);
 			this.formContainer.Name = "formContainer";
-			this.formContainer.Size = new System.Drawing.Size(738, 586);
+			this.formContainer.Size = new System.Drawing.Size(739, 586);
 			this.formContainer.TabIndex = 0;
 			this.formContainer.Click += new System.EventHandler(this.formContainer_Click);
 			// 
 			// btnAtualizar
 			// 
 			this.btnAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnAtualizar.Location = new System.Drawing.Point(-130, 542);
+			this.btnAtualizar.Location = new System.Drawing.Point(-110, 542);
 			this.btnAtualizar.Name = "btnAtualizar";
 			this.btnAtualizar.Size = new System.Drawing.Size(95, 32);
 			this.btnAtualizar.TabIndex = 4;
@@ -81,7 +83,7 @@
 			// btnExcluir
 			// 
 			this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnExcluir.Location = new System.Drawing.Point(631, 542);
+			this.btnExcluir.Location = new System.Drawing.Point(632, 542);
 			this.btnExcluir.Name = "btnExcluir";
 			this.btnExcluir.Size = new System.Drawing.Size(95, 32);
 			this.btnExcluir.TabIndex = 3;
@@ -91,7 +93,7 @@
 			// btnEditar
 			// 
 			this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnEditar.Location = new System.Drawing.Point(530, 542);
+			this.btnEditar.Location = new System.Drawing.Point(531, 542);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(95, 32);
 			this.btnEditar.TabIndex = 2;
@@ -101,7 +103,7 @@
 			// btnCadastrar
 			// 
 			this.btnCadastrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCadastrar.Location = new System.Drawing.Point(429, 542);
+			this.btnCadastrar.Location = new System.Drawing.Point(430, 542);
 			this.btnCadastrar.Name = "btnCadastrar";
 			this.btnCadastrar.Size = new System.Drawing.Size(95, 32);
 			this.btnCadastrar.TabIndex = 1;
@@ -122,11 +124,11 @@
             this.Preco,
             this.Categoria,
             this.DataHoraCadastro});
-			this.dgvProduto.Location = new System.Drawing.Point(-130, 6);
+			this.dgvProduto.Location = new System.Drawing.Point(-110, 41);
 			this.dgvProduto.Name = "dgvProduto";
 			this.dgvProduto.ReadOnly = true;
 			this.dgvProduto.RowTemplate.Height = 84;
-			this.dgvProduto.Size = new System.Drawing.Size(856, 530);
+			this.dgvProduto.Size = new System.Drawing.Size(837, 495);
 			this.dgvProduto.TabIndex = 0;
 			// 
 			// Codigo
@@ -181,7 +183,7 @@
 			this.accControl.Location = new System.Drawing.Point(0, 31);
 			this.accControl.Name = "accControl";
 			this.accControl.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-			this.accControl.Size = new System.Drawing.Size(184, 586);
+			this.accControl.Size = new System.Drawing.Size(164, 586);
 			this.accControl.TabIndex = 1;
 			this.accControl.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
 			// 
@@ -207,7 +209,7 @@
 			this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
 			this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
 			this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-			this.fluentDesignFormControl1.Size = new System.Drawing.Size(922, 31);
+			this.fluentDesignFormControl1.Size = new System.Drawing.Size(903, 31);
 			this.fluentDesignFormControl1.TabIndex = 2;
 			this.fluentDesignFormControl1.TabStop = false;
 			this.fluentDesignFormControl1.TitleItemLinks.Add(this.btnSair);
@@ -227,22 +229,35 @@
             this.btnSair});
 			this.fluentFormDefaultManager1.MaxItemId = 1;
 			// 
+			// lblTitulo
+			// 
+			this.lblTitulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblTitulo.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitulo.Appearance.Options.UseFont = true;
+			this.lblTitulo.Location = new System.Drawing.Point(-110, 6);
+			this.lblTitulo.Name = "lblTitulo";
+			this.lblTitulo.Size = new System.Drawing.Size(93, 29);
+			this.lblTitulo.TabIndex = 19;
+			this.lblTitulo.Text = "Produtos";
+			// 
 			// frmHome
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(922, 617);
+			this.ClientSize = new System.Drawing.Size(903, 617);
 			this.ControlContainer = this.formContainer;
 			this.Controls.Add(this.formContainer);
 			this.Controls.Add(this.accControl);
 			this.Controls.Add(this.fluentDesignFormControl1);
 			this.FluentDesignFormControl = this.fluentDesignFormControl1;
+			this.MaximizeBox = false;
 			this.Name = "frmHome";
 			this.NavigationControl = this.accControl;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Mercado - Produtos";
+			this.Text = "Mercado";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmHome_FormClosed);
 			this.formContainer.ResumeLayout(false);
+			this.formContainer.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProduto)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.accControl)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).EndInit();
@@ -270,5 +285,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn DataHoraCadastro;
 		private DevExpress.XtraBars.Navigation.AccordionControlElement accCategorias;
 		private DevExpress.XtraBars.Navigation.AccordionControlElement accMinhaConta;
+		private DevExpress.XtraEditors.LabelControl lblTitulo;
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace Desktop.Mercado
 {
-	partial class frmCadastro
+	partial class frmEdicaoConta
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,9 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.lblLogin = new DevExpress.XtraEditors.LabelControl();
-			this.linkEntrar = new DevExpress.XtraEditors.HyperlinkLabelControl();
-			this.btnCriarConta = new DevExpress.XtraEditors.SimpleButton();
+			this.btnSalvar = new DevExpress.XtraEditors.SimpleButton();
 			this.lblSenha = new DevExpress.XtraEditors.LabelControl();
 			this.lblEmail = new DevExpress.XtraEditors.LabelControl();
 			this.txtSenha = new DevExpress.XtraEditors.TextEdit();
@@ -48,35 +46,16 @@
 			((System.ComponentModel.ISupportInitialize)(this.ckbExibirSenha.Properties)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// lblLogin
+			// btnSalvar
 			// 
-			this.lblLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.lblLogin.Location = new System.Drawing.Point(12, 289);
-			this.lblLogin.Name = "lblLogin";
-			this.lblLogin.Size = new System.Drawing.Size(90, 13);
-			this.lblLogin.TabIndex = 15;
-			this.lblLogin.Text = "Já tem uma conta?";
-			// 
-			// linkEntrar
-			// 
-			this.linkEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.linkEntrar.Location = new System.Drawing.Point(108, 289);
-			this.linkEntrar.Name = "linkEntrar";
-			this.linkEntrar.Size = new System.Drawing.Size(30, 13);
-			this.linkEntrar.TabIndex = 6;
-			this.linkEntrar.Text = "Entrar";
-			this.linkEntrar.Click += new System.EventHandler(this.linkEntrar_Click);
-			// 
-			// btnCriarConta
-			// 
-			this.btnCriarConta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCriarConta.Location = new System.Drawing.Point(12, 253);
-			this.btnCriarConta.Name = "btnCriarConta";
-			this.btnCriarConta.Size = new System.Drawing.Size(274, 30);
-			this.btnCriarConta.TabIndex = 5;
-			this.btnCriarConta.Text = "CRIAR";
-			this.btnCriarConta.Click += new System.EventHandler(this.btnCriarConta_Click);
+			this.btnSalvar.Location = new System.Drawing.Point(12, 253);
+			this.btnSalvar.Name = "btnSalvar";
+			this.btnSalvar.Size = new System.Drawing.Size(224, 30);
+			this.btnSalvar.TabIndex = 5;
+			this.btnSalvar.Text = "SALVAR";
+			this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
 			// 
 			// lblSenha
 			// 
@@ -103,7 +82,7 @@
 			this.txtSenha.Location = new System.Drawing.Point(12, 156);
 			this.txtSenha.Name = "txtSenha";
 			this.txtSenha.Properties.UseSystemPasswordChar = true;
-			this.txtSenha.Size = new System.Drawing.Size(274, 20);
+			this.txtSenha.Size = new System.Drawing.Size(224, 20);
 			this.txtSenha.TabIndex = 3;
 			// 
 			// txtEmail
@@ -112,7 +91,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtEmail.Location = new System.Drawing.Point(12, 111);
 			this.txtEmail.Name = "txtEmail";
-			this.txtEmail.Size = new System.Drawing.Size(274, 20);
+			this.txtEmail.Size = new System.Drawing.Size(224, 20);
 			this.txtEmail.TabIndex = 2;
 			// 
 			// lblNome
@@ -130,7 +109,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtNome.Location = new System.Drawing.Point(12, 66);
 			this.txtNome.Name = "txtNome";
-			this.txtNome.Size = new System.Drawing.Size(274, 20);
+			this.txtNome.Size = new System.Drawing.Size(224, 20);
 			this.txtNome.TabIndex = 1;
 			// 
 			// lblConfirmacaoSenha
@@ -149,7 +128,7 @@
 			this.txtConfirmacaoSenha.Location = new System.Drawing.Point(12, 201);
 			this.txtConfirmacaoSenha.Name = "txtConfirmacaoSenha";
 			this.txtConfirmacaoSenha.Properties.UseSystemPasswordChar = true;
-			this.txtConfirmacaoSenha.Size = new System.Drawing.Size(274, 20);
+			this.txtConfirmacaoSenha.Size = new System.Drawing.Size(224, 20);
 			this.txtConfirmacaoSenha.TabIndex = 4;
 			// 
 			// lblTitulo
@@ -158,9 +137,9 @@
 			this.lblTitulo.Appearance.Options.UseFont = true;
 			this.lblTitulo.Location = new System.Drawing.Point(12, 12);
 			this.lblTitulo.Name = "lblTitulo";
-			this.lblTitulo.Size = new System.Drawing.Size(119, 29);
-			this.lblTitulo.TabIndex = 22;
-			this.lblTitulo.Text = "Criar Conta";
+			this.lblTitulo.Size = new System.Drawing.Size(140, 29);
+			this.lblTitulo.TabIndex = 20;
+			this.lblTitulo.Text = "Alterar Conta";
 			// 
 			// ckbExibirSenha
 			// 
@@ -169,32 +148,29 @@
 			this.ckbExibirSenha.Name = "ckbExibirSenha";
 			this.ckbExibirSenha.Properties.Caption = "Exibir senha";
 			this.ckbExibirSenha.Size = new System.Drawing.Size(82, 20);
-			this.ckbExibirSenha.TabIndex = 23;
+			this.ckbExibirSenha.TabIndex = 21;
 			this.ckbExibirSenha.CheckedChanged += new System.EventHandler(this.ckbExibirSenha_CheckedChanged);
 			// 
-			// frmCadastro
+			// frmEdicaoConta
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(298, 313);
+			this.ClientSize = new System.Drawing.Size(248, 297);
 			this.Controls.Add(this.ckbExibirSenha);
 			this.Controls.Add(this.lblTitulo);
 			this.Controls.Add(this.lblConfirmacaoSenha);
 			this.Controls.Add(this.txtConfirmacaoSenha);
 			this.Controls.Add(this.lblNome);
 			this.Controls.Add(this.txtNome);
-			this.Controls.Add(this.lblLogin);
-			this.Controls.Add(this.linkEntrar);
-			this.Controls.Add(this.btnCriarConta);
+			this.Controls.Add(this.btnSalvar);
 			this.Controls.Add(this.lblSenha);
 			this.Controls.Add(this.lblEmail);
 			this.Controls.Add(this.txtSenha);
 			this.Controls.Add(this.txtEmail);
 			this.MaximizeBox = false;
-			this.Name = "frmCadastro";
+			this.Name = "frmEdicaoConta";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Mercado";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCadastro_FormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.txtSenha.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtNome.Properties)).EndInit();
@@ -214,9 +190,7 @@
 		private DevExpress.XtraEditors.LabelControl lblConfirmacaoSenha;
 		public DevExpress.XtraEditors.TextEdit txtConfirmacaoSenha;
 		public DevExpress.XtraEditors.TextEdit txtNome;
-		public DevExpress.XtraEditors.LabelControl lblLogin;
-		public DevExpress.XtraEditors.HyperlinkLabelControl linkEntrar;
-		public DevExpress.XtraEditors.SimpleButton btnCriarConta;
+		public DevExpress.XtraEditors.SimpleButton btnSalvar;
 		private DevExpress.XtraEditors.LabelControl lblTitulo;
 		private DevExpress.XtraEditors.CheckEdit ckbExibirSenha;
 	}

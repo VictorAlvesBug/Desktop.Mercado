@@ -2,6 +2,8 @@
 using Desktop.Mercado.Models;
 using Desktop.Mercado.Utils;
 using System;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace Desktop.Mercado
@@ -14,6 +16,9 @@ namespace Desktop.Mercado
 			InitializeComponent();
 
 			_usuarioBusiness = new UsuarioBusiness();
+
+			this.MinimumSize = this.Size;
+			this.MaximumSize = this.Size;
 		}
 
 		private void btnEntrar_Click(object sender, EventArgs e)
@@ -46,9 +51,6 @@ namespace Desktop.Mercado
 				if (!UtilsUsuario.EmailEhValido(email, out string mensagemEmail))
 					mensagem += mensagemEmail;
 
-				if (!UtilsUsuario.SenhaEhValida(senha, out string mensagemSenha))
-					mensagem += mensagemSenha;
-
 				if (mensagem.Length > 0)
 					return false;
 
@@ -78,6 +80,12 @@ namespace Desktop.Mercado
 			formCadastro.txtSenha.Text = txtSenha.Text;
 			formCadastro.Show();
 			this.Hide();
+		}
+
+		private void ckbExibirSenha_CheckedChanged(object sender, EventArgs e)
+		{
+			bool ocultarSenha = !ckbExibirSenha.Checked;
+			txtSenha.Properties.UseSystemPasswordChar = ocultarSenha;
 		}
 	}
 }

@@ -6,12 +6,13 @@ using System.Windows.Forms;
 
 namespace Desktop.Mercado
 {
-	public partial class frmCadastro : DevExpress.XtraEditors.XtraForm
+	public partial class frmEdicaoConta : DevExpress.XtraEditors.XtraForm
 	{
 		private readonly frmLogin _formLogin;
 		private readonly UsuarioBusiness _usuarioBusiness;
+		public int codigoUsuario;
 
-		public frmCadastro(frmLogin formLogin)
+		public frmEdicaoConta(frmLogin formLogin = null)
 		{
 			InitializeComponent();
 
@@ -22,29 +23,30 @@ namespace Desktop.Mercado
 			this.MaximumSize = this.Size;
 		}
 
-		private void btnCriarConta_Click(object sender, EventArgs e)
+		private void btnSalvar_Click(object sender, EventArgs e)
 		{
-			var loadingCriarConta = new Loading(btnCriarConta);
-			loadingCriarConta.Habilitar("CRIANDO CONTA...");
+			var loadingSalvar = new Loading(btnSalvar);
+			loadingSalvar.Habilitar("SALVANDO...");
 
 			string nome = txtNome.Text;
 			string email = txtEmail.Text.ToLower();
 			string senha = txtSenha.Text;
 			string confirmacaoSenha = txtConfirmacaoSenha.Text;
 
-			if (RealizarCadastro(nome, email, senha, confirmacaoSenha, out string mensagem))
+			if (AlterarConta(nome, email, senha, confirmacaoSenha, out string mensagem))
 			{
-				MessageBox.Show($"Cadastro realizado com sucesso", "Sucesso", MessageBoxButtons.OK);
-				loadingCriarConta.Desabilitar();
-				AbrirFormLogin();
+				MessageBox.Show($"Usuário alterado com sucesso", "Sucesso", MessageBoxButtons.OK);
+				loadingSalvar.Desabilitar();
+				Properties.Settings.Default.usuarioLogado = _usuarioBusiness.Logar(email, senha);
+				this.Hide();
 				return;
 			}
 
-			loadingCriarConta.Desabilitar();
+			loadingSalvar.Desabilitar();
 			MessageBox.Show(mensagem, "Erro", MessageBoxButtons.OK);
 		}
 
-		private bool RealizarCadastro(string nome, string email, string senha, string confirmacaoSenha, out string mensagem)
+		private bool AlterarConta(string nome, string email, string senha, string confirmacaoSenha, out string mensagem)
 		{
 			mensagem = string.Empty;
 
@@ -65,24 +67,24 @@ namespace Desktop.Mercado
 				if (mensagem.Length > 0)
 					return false;
 
-				if (_usuarioBusiness.VerificarEmailJaCadastrado(email))
+				if (_usuarioBusiness.VerificarEmailJaCadastrado(email, codigoUsuario))
 				{
-					mensagem = "Este e-mail já está cadastrado, entre com sua conta.";
-					AbrirFormLogin();
+					mensagem = "Este e-mail já está cadastrado.";
 					return false;
 				}
 
 				var usuario = new Usuario
 				{
+					Codigo = codigoUsuario,
 					Nome = nome,
 					Email = email,
 					HashSenha = UtilsCriptografia.RetornarHash(senha)
 				};
 
-				if (_usuarioBusiness.Cadastrar(usuario))
+				if (_usuarioBusiness.Editar(usuario))
 					return true;
 
-				mensagem += "Erro ao cadastrar usuário\n";
+				mensagem += "Erro ao alterar usuário\n";
 				return false;
 			}
 			catch (Exception ex)
@@ -90,24 +92,6 @@ namespace Desktop.Mercado
 				mensagem += ex.Message;
 				return false;
 			}
-		}
-
-		private void linkEntrar_Click(object sender, EventArgs e)
-		{
-			AbrirFormLogin();
-		}
-
-		private void AbrirFormLogin()
-		{
-			_formLogin.txtEmail.Text = txtEmail.Text;
-			_formLogin.txtSenha.Text = txtSenha.Text;
-			_formLogin.Show();
-			this.Hide();
-		}
-
-		private void frmCadastro_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			_formLogin.Close();
 		}
 
 		private void ckbExibirSenha_CheckedChanged(object sender, EventArgs e)

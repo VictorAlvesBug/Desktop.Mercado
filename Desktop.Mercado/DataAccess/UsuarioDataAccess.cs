@@ -27,6 +27,25 @@ namespace Desktop.Mercado.DataAccess
 			}
 		}
 
+		public bool Editar(Usuario usuario)
+		{
+			using (var connection = ConnectionFactory.AbrirConexao("Mercado"))
+			{
+				string query = @"
+							UPDATE
+								Usuario
+							SET
+								Nome = @Nome, 
+								Email = @Email, 
+								HashSenha = @HashSenha
+							WHERE
+								Codigo = @Codigo
+						";
+
+				return connection.Execute(query, usuario) > 0;
+			}
+		}
+
 		public List<Usuario> Listar()
 		{
 			using (var connection = ConnectionFactory.AbrirConexao("Mercado"))

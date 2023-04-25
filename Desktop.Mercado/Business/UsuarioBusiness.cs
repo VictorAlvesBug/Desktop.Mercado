@@ -20,6 +20,11 @@ namespace Desktop.Mercado.Business
 			return _usuarioDataAccess.Cadastrar(usuario);
 		}
 
+		public bool Editar(Usuario usuario)
+		{
+			return _usuarioDataAccess.Editar(usuario);
+		}
+
 		public List<Usuario> Listar()
 		{
 			return _usuarioDataAccess.Listar();
@@ -32,9 +37,11 @@ namespace Desktop.Mercado.Business
 			return _usuarioDataAccess.Logar(email, hashSenha);
 		}
 
-		public bool VerificarEmailJaCadastrado(string email)
+		public bool VerificarEmailJaCadastrado(string email, int codigoUsuario = 0)
 		{
-			return _usuarioDataAccess.Listar().Any(usuario => usuario.Email == email);
+			return _usuarioDataAccess.Listar().Any(usuario => 
+				usuario.Email == email
+				&& usuario.Codigo != codigoUsuario);
 		}
 
 		public Usuario Retornar(int codigo)

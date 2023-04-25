@@ -155,6 +155,12 @@
     <Compile Include="DataAccess\CategoriaDataAccess.cs" />
     <Compile Include="DataAccess\ProdutoDataAccess.cs" />
     <Compile Include="DataAccess\UsuarioDataAccess.cs" />
+    <Compile Include="frmEdicaoConta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEdicaoConta.Designer.cs">
+      <DependentUpon>frmEdicaoConta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     <Compile Include="Utils\UtilsPermissao.cs" />
     <Compile Include="Utils\UtilsProduto.cs" />
     <Compile Include="Utils\UtilsUsuario.cs" />
+    <EmbeddedResource Include="frmEdicaoConta.resx">
+      <DependentUpon>frmEdicaoConta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCategoria.resx">
       <DependentUpon>frmCategoria.cs</DependentUpon>
     </EmbeddedResource>

@@ -25,6 +25,10 @@ namespace Desktop.Mercado
 		{
 			InitializeComponent();
 			_categoriaBusiness = new CategoriaBusiness();
+
+			this.MinimumSize = this.Size;
+			this.MaximumSize = this.Size;
+
 			PopularCategorias();
 			ExibirFuncionalidadesConformePermissoes();
 		}
@@ -78,7 +82,7 @@ namespace Desktop.Mercado
 				txtNome.Visible = true;
 				btnExcluir.Visible = true;
 				btnSalvar.Visible = true;
-				this.Height = 344;
+				this.Height = 384;
 				return;
 			}
 
@@ -86,7 +90,7 @@ namespace Desktop.Mercado
 			txtNome.Visible = false;
 			btnExcluir.Visible = false;
 			btnSalvar.Visible = false;
-			this.Height = 265;
+			this.Height = 305;
 		}
 
 		private void btnSalvar_Click(object sender, EventArgs e)
@@ -119,16 +123,16 @@ namespace Desktop.Mercado
 				return;
 			}
 
+			if (_categoriaBusiness.CategoriaTemProdutos(_categoria.Codigo))
+			{
+				MessageBox.Show("Um ou mais produto estão vinculados a esta categoria", "Erro");
+				return;
+			}
+
 			var result = MessageBox.Show($"Deseja excluir a categoria \"{_categoria.Nome}\"?", "Confirmação", MessageBoxButtons.YesNo);
 
 			if(result != DialogResult.Yes)
 			{
-				return;
-			}
-
-			if (_categoriaBusiness.CategoriaTemProdutos(_categoria.Codigo))
-			{
-				MessageBox.Show("Um ou mais produto estão vinculados a esta categoria.\nExclusão cancelada.", "Erro");
 				return;
 			}
 

@@ -11,9 +11,11 @@ namespace Desktop.Mercado
 {
 	public partial class frmProduto : DevExpress.XtraEditors.XtraForm
 	{
-		public int codigoProduto;
 		private readonly ProdutoBusiness _produtoBusiness;
 		private readonly CategoriaBusiness _categoriaBusiness;
+		public int codigoProduto;
+		public string nomeFoto;
+		private bool _alterouFoto;
 
 		public frmProduto()
 		{
@@ -22,12 +24,17 @@ namespace Desktop.Mercado
 			_produtoBusiness = new ProdutoBusiness();
 			_categoriaBusiness = new CategoriaBusiness();
 
+			this.MinimumSize = this.Size;
+			this.MaximumSize = this.Size;
+
 			cmbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
 
 			_categoriaBusiness.Listar().ForEach(categoria =>
 			{
 				cmbCategoria.Items.Add(categoria);
 			});
+
+			_alterouFoto = false;
 		}
 
 		private void btnSalvar_Click(object sender, EventArgs e)
@@ -36,9 +43,7 @@ namespace Desktop.Mercado
 			decimal preco = UtilsProduto.RetornarPrecoDecimal(txtPreco.Text);
 			Categoria categoria = (Categoria)cmbCategoria.SelectedItem;
 
-			string nomeFoto = string.Empty;
-
-			if (ptbFoto.Image != null)
+			if (ptbFoto.Image != null && _alterouFoto)
 			{
 				nomeFoto = UtilsProduto.SalvarFoto(ptbFoto.Image);
 			}
@@ -120,9 +125,11 @@ namespace Desktop.Mercado
 		{
 			OpenFileDialog openFileDialog = new OpenFileDialog();
 			openFileDialog.Filter = "Image Files (*.jpg;*.jpeg)|*.jpg;*.jpeg";
+
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				ptbFoto.Image = new Bitmap(openFileDialog.FileName);
+				_alterouFoto = true;
 			}
 		}
 	}

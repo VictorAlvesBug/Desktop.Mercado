@@ -35,6 +35,7 @@ namespace Desktop.Mercado
 		{
 			var formProduto = new frmProduto();
 			formProduto.codigoProduto = 0;
+			formProduto.nomeFoto = null;
 			var result = formProduto.ShowDialog();
 
 			if (result == DialogResult.OK)
@@ -56,6 +57,7 @@ namespace Desktop.Mercado
 			}
 
 			formProduto.codigoProduto = codigoProduto;
+			formProduto.nomeFoto = produto.NomeFoto;
 			formProduto.txtNome.Text = produto.Nome;
 			formProduto.txtPreco.Text = UtilsProduto.RetornarPrecoFormatado(produto.Preco);
 			formProduto.ptbFoto.Image = produto.ArquivoFoto;
@@ -92,11 +94,11 @@ namespace Desktop.Mercado
 					if (_produtoBusiness.Desativar(codigoProduto))
 					{
 						PopularProdutos();
-						MessageBox.Show($"Produto \"{produto.Nome}\" excluído com sucesso", "Sucesso");
+						MessageBox.Show("Produto excluído com sucesso", "Sucesso");
 						return;
 					}
 
-					MessageBox.Show($"Erro ao excluir o produto \"{produto.Nome}\"", "Erro");
+					MessageBox.Show($"Erro ao excluir produto", "Erro");
 
 				}
 				catch (Exception ex)
@@ -128,8 +130,6 @@ namespace Desktop.Mercado
 				dgvProduto.Rows.Add(linha);
 			});
 
-			//var bindingListProdutos = new BindingList<Produto>(listaProdutos);
-			//dgvProduto.DataSource = bindingListProdutos;
 			dgvProduto.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
 			if (listaProdutos.Any())
@@ -196,15 +196,13 @@ namespace Desktop.Mercado
 
 			var usuario = Properties.Settings.Default.usuarioLogado;
 
-			var formCadastro = new frmCadastro();
-			formCadastro.Text = "Mercado - Alterar Conta";
-			formCadastro.txtNome.Text = usuario.Nome;
-			formCadastro.txtEmail.Text = usuario.Email;
-			formCadastro.txtSenha.Text = string.Empty;
-			formCadastro.txtConfirmacaoSenha.Text = string.Empty;
-			formCadastro.btnCriarConta.Text = "SALVAR";
-			formCadastro.Show();
-			this.Hide();
+			var formEdicaoConta = new frmEdicaoConta();
+			formEdicaoConta.codigoUsuario = usuario.Codigo;
+			formEdicaoConta.txtNome.Text = usuario.Nome;
+			formEdicaoConta.txtEmail.Text = usuario.Email;
+			formEdicaoConta.txtSenha.Text = string.Empty;
+			formEdicaoConta.txtConfirmacaoSenha.Text = string.Empty;
+			formEdicaoConta.ShowDialog();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.PivotGrid.QueryMode.Sorting;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -9,6 +10,8 @@ namespace Desktop.Mercado.Utils
 {
 	public static class UtilsProduto
 	{
+		private static readonly string _caminhoPastaFotos = $"{Application.StartupPath.Replace("\\Desktop.Mercado\\bin\\Debug", "")}\\Fotos";
+
 		public static bool NomeEhValido(string nome, out string mensagem)
 		{
 			bool quantidadeCaracteresValida = VerificarQuantidadeCaracteres(nome, 3, 100);
@@ -61,10 +64,16 @@ namespace Desktop.Mercado.Utils
 			return precoDecimal.ToString("c2");
 		}
 
+		public static Image RetornarFoto(string nomeFoto)
+		{
+			string caminhoFoto = $"{_caminhoPastaFotos}\\{nomeFoto}";
+			return new Bitmap(caminhoFoto);
+		}
+
 		public static string SalvarFoto(Image arquivoFoto)
 		{
 			string nomeFoto = $"{Guid.NewGuid()}.jpg";
-			string caminhoFoto = $"{Application.StartupPath}\\Fotos\\{nomeFoto}";
+			string caminhoFoto = $"{_caminhoPastaFotos}\\{nomeFoto}";
 
 			using (MemoryStream memory = new MemoryStream())
 			{
