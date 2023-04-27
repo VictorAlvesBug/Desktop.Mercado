@@ -75,6 +75,8 @@ namespace Desktop.Mercado
 
 		private void ExibirFuncionalidadesConformePermissoes()
 		{
+			Size novoTamanho;
+
 			if (Properties.Settings.Default.usuarioLogado != null
 				&& Properties.Settings.Default.usuarioLogado.EhAdministrador())
 			{
@@ -82,7 +84,11 @@ namespace Desktop.Mercado
 				txtNome.Visible = true;
 				btnExcluir.Visible = true;
 				btnSalvar.Visible = true;
-				this.Height = 384;
+
+				novoTamanho = new Size(300, 384);
+				this.MinimumSize = novoTamanho;
+				this.MaximumSize = novoTamanho;
+				this.Size = novoTamanho;
 				return;
 			}
 
@@ -90,7 +96,11 @@ namespace Desktop.Mercado
 			txtNome.Visible = false;
 			btnExcluir.Visible = false;
 			btnSalvar.Visible = false;
-			this.Height = 305;
+
+			novoTamanho = new Size(300, 303);
+			this.MinimumSize = novoTamanho;
+			this.MaximumSize = novoTamanho;
+			this.Size = novoTamanho;
 		}
 
 		private void btnSalvar_Click(object sender, EventArgs e)
